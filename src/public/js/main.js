@@ -84,7 +84,6 @@ function addItemTodo(text, completed) {
 function addItem(value) {
   addItemTodo(value);
   document.getElementById('item').value = '';
-  sendItemToAPI(value);
 
   $('#sort').prop('disabled', false);
 
@@ -221,21 +220,4 @@ function sortList() {
       switching = true;
     }
   }
-}
-
-// Method for sending todo item to API
-function sendItemToAPI(item) {
-  var req = new XMLHttpRequest();
-  req.open('POST', '/add');
-  req.setRequestHeader('Content-Type', 'application/json');
-  req.send(JSON.stringify({ item: item }));
-
-  req.addEventListener('load', () => {
-    console.log(req.responseText);
-  });
-
-  req.addEventListener('error', () => {
-    console.log('something bad happened!');
-    console.log(e);
-  });
 }
